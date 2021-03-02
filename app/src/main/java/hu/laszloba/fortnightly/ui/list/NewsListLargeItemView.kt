@@ -5,6 +5,8 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import hu.laszloba.fortnightly.R
 import hu.laszloba.fortnightly.databinding.ListItemNewsLargeBinding
 import hu.laszloba.fortnightly.model.NewsListItemPresentationModel
@@ -36,6 +38,11 @@ class NewsListLargeItemView : ConstraintLayout, BaseNewsListItemView {
 
     override fun bind(model: NewsListItemPresentationModel) {
         with(binding) {
+            Glide.with(context)
+                .load(model.urlToImage)
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .into(imageImageView)
+
             timeAgoTextView.text = model.timeAgo
             titleTextView.text = model.title
 

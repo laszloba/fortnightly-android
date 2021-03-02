@@ -31,7 +31,8 @@ class ArticleViewModel @Inject constructor() : ViewModel() {
             _viewState.value = ArticleLoaded(
                 ArticlePresentationModel(
                     title = "Apple's new augmented reality exec shows how important the tech is",
-                    urlToImage = "https://via.placeholder.com/700x500/1A237E",
+                    urlToImage = "https://upload.wikimedia.org/wikipedia/commons/5/50/Bodiam-cast" +
+                        "le-10My8-1197.jpg",
                     description = "Bloomberg points out that an executive formerly in charge of i" +
                         "Phone marketing for carriers, Frank Casanova, has a new title: Senio" +
                         "r Director, Worldwide Product Marketing at Apple Augmented Reality. " +
