@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Fortnightly</string>
+
+    <string name="content_description_article_image">Image of the article</string>
 </resources>

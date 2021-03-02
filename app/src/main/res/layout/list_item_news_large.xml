@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:layout_height="wrap_content"
+    tools:layout_width="match_parent"
+    tools:padding="@dimen/margin_padding_size_medium"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+    <!-- TODO Finalize UI -->
+    <ImageView
+        android:id="@+id/imageImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:background="@color/silver_chalice"
+        android:contentDescription="@string/content_description_article_image"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="1.4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <TextView
+        android:id="@+id/timeAgoTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_padding_size_medium"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/imageImageView"
+        app:layout_constraintStart_toStartOf="@+id/imageImageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageImageView"
+        tools:text="1H" />
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_padding_size_small"
+        android:maxLines="4"
+        app:layout_constraintEnd_toEndOf="@+id/imageImageView"
+        app:layout_constraintStart_toStartOf="@+id/imageImageView"
+        app:layout_constraintTop_toBottomOf="@+id/timeAgoTextView"
+        tools:text="Mars One dreams plummet back to Earth as company goes bankrupt" />
+
+</merge>
