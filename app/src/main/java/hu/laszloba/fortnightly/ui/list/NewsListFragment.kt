@@ -5,12 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
 import hu.laszloba.fortnightly.databinding.FragmentNewsListBinding
 import hu.laszloba.fortnightly.extension.exhaustive
 
+@AndroidEntryPoint
 class NewsListFragment : Fragment() {
 
     private object Flipper {
@@ -22,7 +24,8 @@ class NewsListFragment : Fragment() {
     private var _binding: FragmentNewsListBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModel: NewsListViewModel
+    private val viewModel: NewsListViewModel by viewModels()
+
     private lateinit var listAdapter: NewsListAdapter
 
     override fun onCreateView(
@@ -36,12 +39,6 @@ class NewsListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        // TODO Use dependency injection
-        viewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.NewInstanceFactory()
-        ).get(NewsListViewModel::class.java)
 
         listAdapter = NewsListAdapter(requireActivity())
 

@@ -15,6 +15,7 @@ buildscript {
         androidXTestExtJunitVersion = '1.1.2'
         constraintLayoutVersion = '2.0.4'
         gradleVersion = '4.1.2'
+        hiltVersion = '2.32-alpha'
         junitVersion = '4.13.2'
         kotlinVersion = '1.4.30'
         ktlintVersion = '0.39.0'
@@ -33,6 +34,7 @@ buildscript {
 
     dependencies {
         classpath "com.android.tools.build:gradle:$gradleVersion"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hiltVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     }
 }
