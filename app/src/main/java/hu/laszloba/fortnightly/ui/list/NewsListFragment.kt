@@ -6,13 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import hu.laszloba.fortnightly.databinding.FragmentNewsListBinding
 import hu.laszloba.fortnightly.extension.exhaustive
 import hu.laszloba.fortnightly.model.NewsListItemPresentationModel
+import hu.laszloba.fortnightly.navigator.AppNavigator
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class NewsListFragment : Fragment() {
@@ -30,6 +31,9 @@ class NewsListFragment : Fragment() {
 
     private lateinit var listAdapter: NewsListAdapter
 
+    @Inject
+    lateinit var navigator: AppNavigator
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -45,12 +49,7 @@ class NewsListFragment : Fragment() {
         listAdapter = NewsListAdapter(requireActivity()).apply {
             onItemClickedListener = object : NewsListAdapter.OnItemClickedListener {
                 override fun onItemClicked(model: NewsListItemPresentationModel) {
-                    // TODO Move navigation to separate layer
-                    findNavController().navigate(
-                        NewsListFragmentDirections.actionNewsListFragmentToArticleFragment(
-                            model.id
-                        )
-                    )
+                    navigator.navigateToArticle(model.id)
                 }
             }
         }
