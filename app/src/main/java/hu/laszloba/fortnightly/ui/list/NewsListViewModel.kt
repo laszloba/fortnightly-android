@@ -4,12 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import hu.laszloba.fortnightly.model.LargeNewsListItemPresentationModel
 import hu.laszloba.fortnightly.model.SmallNewsListItemPresentationModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class NewsListViewModel : ViewModel() {
+@HiltViewModel
+class NewsListViewModel @Inject constructor() : ViewModel() {
 
     private val _viewState = MutableLiveData<NewsListViewState>()
     val viewState: LiveData<NewsListViewState>

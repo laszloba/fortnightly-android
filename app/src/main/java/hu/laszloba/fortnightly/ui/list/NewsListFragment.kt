@@ -11,6 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import hu.laszloba.fortnightly.databinding.FragmentNewsListBinding
 import hu.laszloba.fortnightly.extension.exhaustive
+import hu.laszloba.fortnightly.model.NewsListItemPresentationModel
+import hu.laszloba.fortnightly.navigator.AppNavigator
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class NewsListFragment : Fragment() {
@@ -28,6 +31,9 @@ class NewsListFragment : Fragment() {
 
     private lateinit var listAdapter: NewsListAdapter
 
+    @Inject
+    lateinit var navigator: AppNavigator
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,7 +46,13 @@ class NewsListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        listAdapter = NewsListAdapter(requireActivity())
+        listAdapter = NewsListAdapter(requireActivity()).apply {
+            onItemClickedListener = object : NewsListAdapter.OnItemClickedListener {
+                override fun onItemClicked(model: NewsListItemPresentationModel) {
+                    navigator.navigateToArticle(model.id)
+                }
+            }
+        }
 
         val listLayoutManager = LinearLayoutManager(context)
 

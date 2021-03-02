@@ -9,6 +9,28 @@
         android:id="@+id/newsListFragment"
         android:name="hu.laszloba.fortnightly.ui.list.NewsListFragment"
         android:label="NewsListFragment"
-        tools:layout="@layout/fragment_news_list" />
+        tools:layout="@layout/fragment_news_list">
+
+        <action
+            android:id="@+id/action_newsListFragment_to_articleFragment"
+            app:destination="@id/articleFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/articleFragment"
+        android:name="hu.laszloba.fortnightly.ui.article.ArticleFragment"
+        android:label="ArticleFragment"
+        tools:layout="@layout/fragment_article">
+
+        <argument
+            android:name="articleId"
+            app:argType="long" />
+
+    </fragment>
 
 </navigation>
