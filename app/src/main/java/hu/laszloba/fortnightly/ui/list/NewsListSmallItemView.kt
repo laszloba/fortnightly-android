@@ -12,6 +12,8 @@ import hu.laszloba.fortnightly.model.NewsListItemPresentationModel
 // TODO similar to NewsListLargeItemView
 class NewsListSmallItemView : ConstraintLayout, BaseNewsListItemView {
 
+    override var onItemClickedListener: NewsListAdapter.OnItemClickedListener? = null
+
     private val binding =
         ListItemNewsSmallBinding.inflate(LayoutInflater.from(context), this)
 
@@ -36,6 +38,10 @@ class NewsListSmallItemView : ConstraintLayout, BaseNewsListItemView {
         with(binding) {
             timeAgoTextView.text = model.timeAgo
             titleTextView.text = model.title
+
+            root.setOnClickListener {
+                onItemClickedListener?.onItemClicked(model)
+            }
         }
     }
 }

@@ -25,6 +25,8 @@ class NewsListAdapter(
             notifyDataSetChanged()
         }
 
+    var onItemClickedListener: OnItemClickedListener? = null
+
     override fun getItemCount(): Int = items.size
 
     override fun getItemViewType(position: Int): Int =
@@ -41,7 +43,10 @@ class NewsListAdapter(
         }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder.itemView as BaseNewsListItemView).bind(items[position])
+        with(holder.itemView as BaseNewsListItemView) {
+            onItemClickedListener = this@NewsListAdapter.onItemClickedListener
+            bind(items[position])
+        }
     }
 
     class NewsListLargeItemViewHolder(view: NewsListLargeItemView) :
@@ -64,5 +69,9 @@ class NewsListAdapter(
         ): Boolean {
             return oldItem == newItem
         }
+    }
+
+    interface OnItemClickedListener {
+        fun onItemClicked(model: NewsListItemPresentationModel)
     }
 }

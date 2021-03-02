@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import hu.laszloba.fortnightly.databinding.FragmentArticleBinding
 import hu.laszloba.fortnightly.extension.exhaustive
@@ -22,6 +23,7 @@ class ArticleFragment : Fragment() {
     private var _binding: FragmentArticleBinding? = null
     private val binding get() = _binding!!
 
+    private val args: ArticleFragmentArgs by navArgs()
     private val viewModel: ArticleViewModel by viewModels()
 
     override fun onCreateView(
@@ -38,8 +40,7 @@ class ArticleFragment : Fragment() {
 
         with(viewModel) {
             viewState.observe(viewLifecycleOwner, ::render)
-            // TODO Get article ID from argument
-            loadArticle(1)
+            loadArticle(args.articleId)
         }
     }
 
