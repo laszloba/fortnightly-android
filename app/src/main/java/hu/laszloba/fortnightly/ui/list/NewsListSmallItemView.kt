@@ -43,7 +43,8 @@ class NewsListSmallItemView : ConstraintLayout, BaseNewsListItemView {
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(imageImageView)
 
-            timeAgoTextView.text = model.timeAgo
+            hoursAgoTextView.text =
+                context.getString(R.string.news_list_item_hours_ago, model.hoursAgo)
             titleTextView.text = model.title
 
             root.setOnClickListener {

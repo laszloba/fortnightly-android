@@ -23,7 +23,7 @@
         tools:src="@tools:sample/backgrounds/scenic" />
 
     <TextView
-        android:id="@+id/timeAgoTextView"
+        android:id="@+id/hoursAgoTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_padding_size_medium"
@@ -41,7 +41,7 @@
         android:maxLines="4"
         app:layout_constraintEnd_toEndOf="@+id/imageImageView"
         app:layout_constraintStart_toStartOf="@+id/imageImageView"
-        app:layout_constraintTop_toBottomOf="@+id/timeAgoTextView"
+        app:layout_constraintTop_toBottomOf="@+id/hoursAgoTextView"
         tools:text="Mars One dreams plummet back to Earth as company goes bankrupt" />
 
 </merge>

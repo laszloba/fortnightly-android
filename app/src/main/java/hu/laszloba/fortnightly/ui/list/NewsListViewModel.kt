@@ -35,19 +35,19 @@ class NewsListViewModel @Inject constructor() : ViewModel() {
                         id = 1,
                         title = "Mars One dreams plummet back to Earth as company goes bankrupt",
                         urlToImage = "https://upload.wikimedia.org/wikipedia/commons/a/ae/Warwick_Castle_May_2016.jpg",
-                        timeAgo = "1H"
+                        hoursAgo = 1
                     ),
                     SmallNewsListItemPresentationModel(
                         id = 2,
                         title = "Microsoft helps LinkedIn launch its first live video streaming service",
                         urlToImage = "https://upload.wikimedia.org/wikipedia/commons/5/50/Bodiam-castle-10My8-1197.jpg",
-                        timeAgo = "2H"
+                        hoursAgo = 2
                     ),
                     SmallNewsListItemPresentationModel(
                         id = 3,
                         title = "Futures point to a triple-digit gain for the Dow after tentative deal to avoid government shutdown",
                         urlToImage = "https://upload.wikimedia.org/wikipedia/commons/8/8e/Hever_Castle_2014_06_20_1.jpg",
-                        timeAgo = "3H"
+                        hoursAgo = 3
                     )
                 )
             )
