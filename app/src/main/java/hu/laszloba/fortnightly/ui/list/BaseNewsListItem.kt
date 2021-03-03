@@ -1,0 +1,59 @@
+package hu.laszloba.fortnightly.ui.list
+
+import android.content.Context
+import android.util.AttributeSet
+import android.view.View
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import hu.laszloba.fortnightly.R
+import hu.laszloba.fortnightly.model.NewsListItemPresentationModel
+
+abstract class BaseNewsListItem : ConstraintLayout, BaseNewsListItemView {
+
+    override var onItemClickedListener: NewsListAdapter.OnItemClickedListener? = null
+
+    constructor(context: Context) : super(context)
+
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
+
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) :
+        super(context, attrs, defStyleAttr)
+
+    init {
+        layoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+
+        val padding = resources.getDimension(R.dimen.margin_padding_size_medium).toInt()
+        setPadding(paddingLeft, padding, paddingRight, padding)
+    }
+
+    override fun bind(model: NewsListItemPresentationModel) {
+        Glide.with(context)
+            .load(model.urlToImage)
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .into(getImageImageView())
+
+        getHoursAgoTextView().text =
+            context.getString(R.string.news_list_item_hours_ago, model.hoursAgo)
+
+        getTitleTextView().text = model.title
+
+        getViewForClickListener().setOnClickListener {
+            onItemClickedListener?.onItemClicked(model)
+        }
+    }
+
+    abstract fun getViewForClickListener(): View
+
+    abstract fun getImageImageView(): ImageView
+
+    abstract fun getHoursAgoTextView(): TextView
+
+    abstract fun getTitleTextView(): TextView
+}

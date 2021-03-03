@@ -23,7 +23,7 @@ class ArticleFragmentTest {
     private val activityTestRule = ActivityScenarioRule(MainActivity::class.java)
 
     @get:Rule
-    val rule = RuleChain
+    val rule: RuleChain = RuleChain
         .outerRule(hiltRule)
         .around(activityTestRule)
 

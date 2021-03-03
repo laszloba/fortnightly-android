@@ -40,7 +40,7 @@ class NewsListViewModelTest {
     private lateinit var viewModel: NewsListViewModel
 
     @get:Rule
-    val rule = RuleChain
+    val rule: RuleChain = RuleChain
         .outerRule(hiltRule)
         .around(instantTaskExecutorRule)
 
