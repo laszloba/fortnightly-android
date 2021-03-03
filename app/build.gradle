@@ -6,6 +6,11 @@ plugins {
     id 'dagger.hilt.android.plugin'
 }
 
+apply from: 'utils.gradle'
+
+def localProperties = new Properties()
+localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+
 android {
     compileSdkVersion rootProject.compileSdkVersion
     buildToolsVersion rootProject.buildToolsVersion
@@ -18,6 +23,18 @@ android {
         versionName rootProject.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "NEWS_API_KEY", doubleQuotes(localProperties['newsApiKey'])
+
+        // Local database
+        buildConfigField "int", 'DATABASE_VERSION', '1'
+        buildConfigField "String", "DATABASE_NAME", doubleQuotes("default")
+
+        kapt {
+            arguments {
+                arg("room.schemaLocation", "$projectDir/schemas".toString())
+            }
+        }
     }
 
     buildTypes {
@@ -53,11 +70,20 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$rootProject.navigationVersion"
     implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerViewVersion"
+    implementation "androidx.room:room-ktx:$rootProject.roomVersion"
+    implementation "androidx.room:room-runtime:$rootProject.roomVersion"
+    implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
     implementation "com.google.android.material:material:$rootProject.materialComponentsVersion"
     implementation "com.google.dagger:hilt-android:$rootProject.hiltVersion"
+    implementation "com.squareup.moshi:moshi-adapters:$rootProject.moshiVersion"
+    implementation "com.squareup.retrofit2:converter-moshi:$rootProject.retrofitVersion"
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$rootProject.kotlinVersion"
 
+    kapt "androidx.room:room-compiler:$rootProject.roomVersion"
+    kapt "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
     kapt "com.google.dagger:hilt-android-compiler:$rootProject.hiltVersion"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$rootProject.moshiVersion"
 
     testImplementation "junit:junit:$rootProject.junitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.androidXTestEspressoVersion"

@@ -6,7 +6,9 @@ sealed class NewsListViewState
 
 object Loading : NewsListViewState()
 
-object Error : NewsListViewState()
+data class Error(
+    val message: String
+) : NewsListViewState()
 
 data class NewsListLoaded(
     val newsList: List<NewsListItemPresentationModel>

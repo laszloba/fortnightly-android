@@ -5,14 +5,26 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import hu.laszloba.fortnightly.model.LargeNewsListItemPresentationModel
-import hu.laszloba.fortnightly.model.SmallNewsListItemPresentationModel
-import kotlinx.coroutines.delay
+import hu.laszloba.fortnightly.api.NewsService
+import hu.laszloba.fortnightly.data.api.ArticleApiModel
+import hu.laszloba.fortnightly.data.mapper.api.todatabase.NewsListItemApiModelToDataModelMapper
+import hu.laszloba.fortnightly.data.mapper.database.topresentation.NewsListItemTupleToPresentationModelMapper
+import hu.laszloba.fortnightly.database.NewsDao
+import hu.laszloba.fortnightly.model.NewsListItemPresentationModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class NewsListViewModel @Inject constructor() : ViewModel() {
+class NewsListViewModel @Inject constructor(
+    private val newsService: NewsService,
+    private val newsDao: NewsDao,
+    private val newsListItemApiModelToDataModelMapper: NewsListItemApiModelToDataModelMapper,
+    private val newsListItemTupleToPresentationModelMapper: NewsListItemTupleToPresentationModelMapper
+) : ViewModel() {
+
+    companion object {
+        private const val STATUS_OK = "ok"
+    }
 
     private val _viewState = MutableLiveData<NewsListViewState>()
     val viewState: LiveData<NewsListViewState>
@@ -26,31 +38,51 @@ class NewsListViewModel @Inject constructor() : ViewModel() {
         viewModelScope.launch {
             _viewState.value = Loading
 
-            delay(500L)
+            try {
+                val newsListResponse = newsService.getTopHeadlines()
 
-            // TODO Get from data source
-            _viewState.value = NewsListLoaded(
-                listOf(
-                    LargeNewsListItemPresentationModel(
-                        id = 1,
-                        title = "Mars One dreams plummet back to Earth as company goes bankrupt",
-                        urlToImage = "https://via.placeholder.com/700x500/1A237E",
-                        timeAgo = "1H"
-                    ),
-                    SmallNewsListItemPresentationModel(
-                        id = 2,
-                        title = "Microsoft helps LinkedIn launch its first live video streaming service",
-                        urlToImage = "https://via.placeholder.com/700x500/DCE775",
-                        timeAgo = "2H"
-                    ),
-                    SmallNewsListItemPresentationModel(
-                        id = 3,
-                        title = "Futures point to a triple-digit gain for the Dow after tentative deal to avoid government shutdown",
-                        urlToImage = "https://via.placeholder.com/700x500/A1887F",
-                        timeAgo = "3H"
-                    )
-                )
-            )
+                if (newsListResponse.isSuccessful) {
+                    val topHeadlinesApiModel = newsListResponse.body()
+
+                    if (topHeadlinesApiModel != null) {
+                        if (topHeadlinesApiModel.status == STATUS_OK) {
+                            _viewState.value = NewsListLoaded(
+                                saveAndReturnNewsList(topHeadlinesApiModel.articles)
+                            )
+                        } else {
+                            _viewState.value =
+                                Error(
+                                    "Bad API status: ${topHeadlinesApiModel.status}" +
+                                        ", message: ${topHeadlinesApiModel.message}"
+                                )
+                        }
+                    } else {
+                        _viewState.value = Error("Response body is empty")
+                    }
+                } else {
+                    _viewState.value =
+                        Error("Bad response: HTTP ${newsListResponse.code()}")
+                }
+            } catch (e: Exception) {
+                _viewState.value = Error("Unknown error: ${e.message}")
+            }
+        }
+    }
+
+    private suspend fun saveAndReturnNewsList(
+        articles: List<ArticleApiModel>
+    ): List<NewsListItemPresentationModel> {
+        with(newsDao) {
+            clearArticles()
+            insertArticles(newsListItemApiModelToDataModelMapper.map(articles))
+
+            return getNews().mapIndexed { index, newsListItemTuple ->
+                if (index == 0) {
+                    newsListItemTupleToPresentationModelMapper.mapToLargeListItem(newsListItemTuple)
+                } else {
+                    newsListItemTupleToPresentationModelMapper.mapToSmallListItem(newsListItemTuple)
+                }
+            }
         }
     }
 }

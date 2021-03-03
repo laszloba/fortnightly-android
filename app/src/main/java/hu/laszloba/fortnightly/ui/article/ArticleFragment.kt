@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import dagger.hilt.android.AndroidEntryPoint
 import hu.laszloba.fortnightly.databinding.FragmentArticleBinding
 import hu.laszloba.fortnightly.extension.exhaustive
@@ -61,9 +63,13 @@ class ArticleFragment : Fragment() {
                 with(binding) {
                     viewFlipper.displayedChild = Flipper.CONTENT
 
+                    Glide.with(requireActivity())
+                        .load(article.urlToImage)
+                        .transition(DrawableTransitionOptions.withCrossFade())
+                        .into(imageImageView)
+
                     titleTextView.text = article.title
                     descriptionTextView.text = article.description
-                    // TODO Show image of the article
                 }
             }
         }.exhaustive
