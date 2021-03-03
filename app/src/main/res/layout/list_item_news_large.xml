@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:layout_height="wrap_content"
     tools:layout_width="match_parent"
-    tools:padding="@dimen/margin_padding_size_medium"
+    tools:paddingBottom="@dimen/margin_padding_size_medium"
+    tools:paddingTop="@dimen/margin_padding_size_medium"
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
-    <!-- TODO Finalize UI -->
     <ImageView
         android:id="@+id/imageImageView"
         android:layout_width="0dp"
@@ -27,7 +27,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_padding_size_medium"
-        android:textStyle="bold"
+        android:textAppearance="@style/Body3"
         app:layout_constraintEnd_toEndOf="@+id/imageImageView"
         app:layout_constraintStart_toStartOf="@+id/imageImageView"
         app:layout_constraintTop_toBottomOf="@+id/imageImageView"
@@ -37,8 +37,9 @@
         android:id="@+id/titleTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_padding_size_small"
+        android:layout_marginTop="@dimen/margin_padding_size_tiny"
         android:maxLines="4"
+        android:textAppearance="@style/Subtitle1"
         app:layout_constraintEnd_toEndOf="@+id/imageImageView"
         app:layout_constraintStart_toStartOf="@+id/imageImageView"
         app:layout_constraintTop_toBottomOf="@+id/hoursAgoTextView"
