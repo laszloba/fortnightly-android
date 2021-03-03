@@ -8,8 +8,6 @@
     android:inAnimation="@android:anim/fade_in"
     android:outAnimation="@android:anim/fade_out">
 
-    <!-- TODO Finalize UI -->
-
     <ProgressBar
         android:id="@+id/loadingProgressBar"
         android:layout_width="@dimen/loading_progress_bar_size"
@@ -33,7 +31,7 @@
                 android:background="@color/silver_chalice"
                 android:contentDescription="@string/content_description_article_image"
                 android:scaleType="centerCrop"
-                app:layout_constraintDimensionRatio="1.4"
+                app:layout_constraintDimensionRatio="1.8"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -44,8 +42,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_padding_size_small"
-                android:textSize="25sp"
-                android:textStyle="bold"
+                android:paddingLeft="@dimen/margin_padding_size_medium"
+                android:paddingRight="@dimen/margin_padding_size_medium"
+                android:textAppearance="@style/Subtitle2"
                 app:layout_constraintEnd_toEndOf="@+id/imageImageView"
                 app:layout_constraintStart_toStartOf="@+id/imageImageView"
                 app:layout_constraintTop_toBottomOf="@+id/imageImageView"
@@ -56,6 +55,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_padding_size_medium"
+                android:paddingLeft="@dimen/margin_padding_size_medium"
+                android:paddingRight="@dimen/margin_padding_size_medium"
+                android:textAppearance="@style/Body2"
                 app:layout_constraintEnd_toEndOf="@+id/titleTextView"
                 app:layout_constraintStart_toStartOf="@+id/titleTextView"
                 app:layout_constraintTop_toBottomOf="@+id/titleTextView"
@@ -65,13 +67,13 @@
 
     </ScrollView>
 
-    <!-- TODO Create nice error message -->
     <TextView
         android:id="@+id/errorTextView"
+        style="@style/ErrorMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Failed to load article"
-        android:textColor="#b71c1c" />
+        android:padding="@dimen/margin_padding_size_large"
+        android:text="@string/article_error" />
 
 </ViewFlipper>

@@ -33,7 +33,7 @@ class NewsListSmallItemView : ConstraintLayout, BaseNewsListItemView {
         )
 
         val padding = resources.getDimension(R.dimen.margin_padding_size_medium).toInt()
-        setPadding(padding, padding, padding, padding)
+        setPadding(paddingLeft, padding, paddingRight, padding)
     }
 
     override fun bind(model: NewsListItemPresentationModel) {
