@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import hu.laszloba.fortnightly.R
 import hu.laszloba.fortnightly.databinding.FragmentNewsListBinding
 import hu.laszloba.fortnightly.extension.exhaustive
 import hu.laszloba.fortnightly.model.NewsListItemPresentationModel
@@ -77,8 +78,12 @@ class NewsListFragment : Fragment() {
         when (viewState) {
             Loading ->
                 binding.viewFlipper.displayedChild = Flipper.LOADING
-            Error ->
-                binding.viewFlipper.displayedChild = Flipper.ERROR
+            is Error -> {
+                with(binding) {
+                    viewFlipper.displayedChild = Flipper.ERROR
+                    errorTextView.text = getString(R.string.news_list_error, viewState.message)
+                }
+            }
             is NewsListLoaded -> {
                 binding.viewFlipper.displayedChild = Flipper.CONTENT
                 listAdapter.items = viewState.newsList

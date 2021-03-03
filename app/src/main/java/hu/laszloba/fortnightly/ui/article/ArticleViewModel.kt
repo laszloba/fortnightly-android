@@ -5,13 +5,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import hu.laszloba.fortnightly.model.ArticlePresentationModel
-import kotlinx.coroutines.delay
+import hu.laszloba.fortnightly.data.mapper.database.topresentation.ArticleTupleToPresentationModelMapper
+import hu.laszloba.fortnightly.database.NewsDao
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ArticleViewModel @Inject constructor() : ViewModel() {
+class ArticleViewModel @Inject constructor(
+    private val newsDao: NewsDao,
+    private val articleTupleToPresentationModelMapper: ArticleTupleToPresentationModelMapper
+) : ViewModel() {
 
     private val _viewState = MutableLiveData<ArticleViewState>()
     val viewState: LiveData<ArticleViewState>
@@ -25,21 +28,15 @@ class ArticleViewModel @Inject constructor() : ViewModel() {
         viewModelScope.launch {
             _viewState.value = Loading
 
-            delay(500L)
+            val articleTuple = newsDao.getArticle(articleId)
 
-            // TODO Get from data source
-            _viewState.value = ArticleLoaded(
-                ArticlePresentationModel(
-                    title = "Apple's new augmented reality exec shows how important the tech is",
-                    urlToImage = "https://upload.wikimedia.org/wikipedia/commons/5/50/Bodiam-cast" +
-                        "le-10My8-1197.jpg",
-                    description = "Bloomberg points out that an executive formerly in charge of i" +
-                        "Phone marketing for carriers, Frank Casanova, has a new title: Senio" +
-                        "r Director, Worldwide Product Marketing at Apple Augmented Reality. " +
-                        "While Google is dipping its toe into using AR to enhance Go...[+1061" +
-                        " chars]"
+            _viewState.value = if (articleTuple != null)
+                ArticleLoaded(
+                    articleTupleToPresentationModelMapper
+                        .map(articleTuple)
                 )
-            )
+            else
+                Error
         }
     }
 }

@@ -4,4 +4,5 @@
     <string name="content_description_article_image">Image of the article</string>
 
     <string name="news_list_item_hours_ago">%dH</string>
+    <string name="news_list_error">Could not load news list: %s</string>
 </resources>
