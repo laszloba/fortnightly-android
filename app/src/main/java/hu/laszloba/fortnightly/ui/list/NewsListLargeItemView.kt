@@ -3,7 +3,6 @@ package hu.laszloba.fortnightly.ui.list
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import hu.laszloba.fortnightly.databinding.ListItemNewsLargeBinding
@@ -19,8 +18,6 @@ class NewsListLargeItemView : BaseNewsListItem {
 
     private val binding =
         ListItemNewsLargeBinding.inflate(LayoutInflater.from(context), this)
-
-    override fun getViewForClickListener(): View = binding.root
 
     override fun getImageImageView(): ImageView = binding.imageImageView
 
