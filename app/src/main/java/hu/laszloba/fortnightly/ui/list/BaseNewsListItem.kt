@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
@@ -24,12 +23,12 @@ abstract class BaseNewsListItem : ConstraintLayout, BaseNewsListItemView {
         super(context, attrs, defStyleAttr)
 
     init {
-        layoutParams = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT
+        layoutParams = LayoutParams(
+            LayoutParams.MATCH_PARENT,
+            LayoutParams.WRAP_CONTENT
         )
 
-        val padding = resources.getDimension(R.dimen.margin_padding_size_medium).toInt()
+        val padding = resources.getDimensionPixelSize(R.dimen.margin_padding_size_medium)
         setPadding(paddingLeft, padding, paddingRight, padding)
     }
 
