@@ -5,6 +5,14 @@
     <dimen name="margin_padding_size_medium">16dp</dimen>
     <dimen name="margin_padding_size_large">24dp</dimen>
 
+    <dimen name="common_toolbar_height">56dp</dimen>
+    <dimen name="common_toolbar_background_elevation">8dp</dimen>
+    <dimen name="common_toolbar_image_width">48dp</dimen>
+    <dimen name="common_toolbar_image_height">48dp</dimen>
+    <dimen name="common_toolbar_image_padding">12dp</dimen>
+
+    <dimen name="toolbar_back_width">56dp</dimen>
+
     <dimen name="loading_progress_bar_size">80dp</dimen>
 
     <dimen name="list_item_news_small_image_width">75dp</dimen>
