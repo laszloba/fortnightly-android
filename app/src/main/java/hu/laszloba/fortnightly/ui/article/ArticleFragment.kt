@@ -12,6 +12,9 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import dagger.hilt.android.AndroidEntryPoint
 import hu.laszloba.fortnightly.databinding.FragmentArticleBinding
 import hu.laszloba.fortnightly.extension.exhaustive
+import hu.laszloba.fortnightly.navigator.AppNavigator
+import hu.laszloba.fortnightly.ui.toolbar.ToolbarWithBackButton
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class ArticleFragment : Fragment() {
@@ -28,6 +31,9 @@ class ArticleFragment : Fragment() {
     private val args: ArticleFragmentArgs by navArgs()
     private val viewModel: ArticleViewModel by viewModels()
 
+    @Inject
+    lateinit var navigator: AppNavigator
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,6 +45,13 @@ class ArticleFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.toolbarWithBackButton.onActionClickedListener =
+            object : ToolbarWithBackButton.OnActionClickedListener {
+                override fun onBackButtonClicked() {
+                    navigator.popBackStack()
+                }
+            }
 
         with(viewModel) {
             viewState.observe(viewLifecycleOwner, ::render)

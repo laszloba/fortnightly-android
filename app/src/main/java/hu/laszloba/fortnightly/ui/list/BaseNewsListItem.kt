@@ -2,14 +2,13 @@ package hu.laszloba.fortnightly.ui.list
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.View
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import hu.laszloba.fortnightly.R
+import hu.laszloba.fortnightly.extension.addRippleEffectOnClick
 import hu.laszloba.fortnightly.model.NewsListItemPresentationModel
 
 abstract class BaseNewsListItem : ConstraintLayout, BaseNewsListItemView {
@@ -24,13 +23,15 @@ abstract class BaseNewsListItem : ConstraintLayout, BaseNewsListItemView {
         super(context, attrs, defStyleAttr)
 
     init {
-        layoutParams = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT
+        layoutParams = LayoutParams(
+            LayoutParams.MATCH_PARENT,
+            LayoutParams.WRAP_CONTENT
         )
 
-        val padding = resources.getDimension(R.dimen.margin_padding_size_medium).toInt()
+        val padding = resources.getDimensionPixelSize(R.dimen.margin_padding_size_medium)
         setPadding(paddingLeft, padding, paddingRight, padding)
+
+        addRippleEffectOnClick()
     }
 
     override fun bind(model: NewsListItemPresentationModel) {
@@ -44,12 +45,10 @@ abstract class BaseNewsListItem : ConstraintLayout, BaseNewsListItemView {
 
         getTitleTextView().text = model.title
 
-        getViewForClickListener().setOnClickListener {
+        setOnClickListener {
             onItemClickedListener?.onItemClicked(model)
         }
     }
-
-    abstract fun getViewForClickListener(): View
 
     abstract fun getImageImageView(): ImageView
 

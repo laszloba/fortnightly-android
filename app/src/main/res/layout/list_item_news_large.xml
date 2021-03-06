@@ -12,6 +12,7 @@
         android:id="@+id/imageImageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="@dimen/margin_padding_size_xxxlarge"
         android:adjustViewBounds="true"
         android:background="@color/silver_chalice"
         android:contentDescription="@string/content_description_article_image"
@@ -31,7 +32,7 @@
         app:layout_constraintEnd_toEndOf="@+id/imageImageView"
         app:layout_constraintStart_toStartOf="@+id/imageImageView"
         app:layout_constraintTop_toBottomOf="@+id/imageImageView"
-        tools:text="1H" />
+        tools:text="@string/placeholder_list_item_news_large_hours_ago" />
 
     <TextView
         android:id="@+id/titleTextView"
@@ -43,6 +44,6 @@
         app:layout_constraintEnd_toEndOf="@+id/imageImageView"
         app:layout_constraintStart_toStartOf="@+id/imageImageView"
         app:layout_constraintTop_toBottomOf="@+id/hoursAgoTextView"
-        tools:text="Mars One dreams plummet back to Earth as company goes bankrupt" />
+        tools:text="@string/placeholder_list_item_news_large_title" />
 
 </merge>

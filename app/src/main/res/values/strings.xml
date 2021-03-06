@@ -2,9 +2,21 @@
     <string name="app_name">Fortnightly</string>
 
     <string name="content_description_article_image">Image of the article</string>
+    <string name="content_description_menu_button">Menu button</string>
+    <string name="content_description_toolbar_back_button">Navigate back button</string>
 
+    <string name="news_list_title">Front page</string>
+    <string name="news_list_single_letter_logo" translatable="false">N</string>
     <string name="news_list_item_hours_ago">%dH</string>
     <string name="news_list_error">Could not load news list: %s</string>
 
     <string name="article_error">Failed to load article</string>
+
+    <string name="placeholder_news_list_error" translatable="false">Failed to load news list</string>
+    <string name="placeholder_article_title" translatable="false">Apple\'s new augmented reality exec shows how important the tech is</string>
+    <string name="placeholder_article_description" translatable="false">Bloomberg points out that an executive formerly in charge of iPhone marketing for carriers, Frank Casanova, has a new title: Senior Director, Worldwide Product Marketing at Apple Augmented Reality. While Google is dipping its toe into using AR to enhance Go...[+1061 chars]</string>
+    <string name="placeholder_list_item_news_large_title" translatable="false">Mars One dreams plummet back to Earth as company goes bankrupt</string>
+    <string name="placeholder_list_item_news_large_hours_ago" translatable="false">1H</string>
+    <string name="placeholder_list_item_news_small_title" translatable="false">Microsoft helps LinkedIn launch its first live video streaming service</string>
+    <string name="placeholder_list_item_news_small_hours_ago" translatable="false">2H</string>
 </resources>

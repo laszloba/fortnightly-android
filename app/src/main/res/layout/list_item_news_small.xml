@@ -27,13 +27,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/margin_padding_size_medium"
-        android:layout_marginRight="@dimen/margin_padding_size_medium"
         android:textAppearance="@style/Body3"
         app:layout_constraintBottom_toTopOf="@+id/titleTextView"
         app:layout_constraintEnd_toStartOf="@+id/imageImageView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="2H" />
+        tools:text="@string/placeholder_list_item_news_small_hours_ago" />
 
     <TextView
         android:id="@+id/titleTextView"
@@ -46,6 +45,6 @@
         app:layout_constraintEnd_toEndOf="@+id/hoursAgoTextView"
         app:layout_constraintStart_toStartOf="@+id/hoursAgoTextView"
         app:layout_constraintTop_toBottomOf="@+id/hoursAgoTextView"
-        tools:text="Microsoft helps LinkedIn launch its first live video streaming service" />
+        tools:text="@string/placeholder_list_item_news_small_title" />
 
 </merge>

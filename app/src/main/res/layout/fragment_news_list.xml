@@ -1,32 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/viewFlipper"
+    android:id="@+id/mainMotionLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:inAnimation="@android:anim/fade_in"
-    android:outAnimation="@android:anim/fade_out">
+    app:layoutDescription="@xml/fragment_news_list_scene">
 
-    <ProgressBar
-        android:id="@+id/loadingProgressBar"
-        android:layout_width="@dimen/loading_progress_bar_size"
-        android:layout_height="@dimen/loading_progress_bar_size"
-        android:layout_gravity="center" />
+    <ViewFlipper
+        android:id="@+id/viewFlipper"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:inAnimation="@android:anim/fade_in"
+        android:outAnimation="@android:anim/fade_out"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/newsListRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="@dimen/margin_padding_size_medium"
-        android:paddingRight="@dimen/margin_padding_size_medium" />
+        <ProgressBar
+            android:id="@+id/loadingProgressBar"
+            android:layout_width="@dimen/loading_progress_bar_size"
+            android:layout_height="@dimen/loading_progress_bar_size"
+            android:layout_gravity="center" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/newsListRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/margin_padding_size_medium"
+            android:paddingRight="@dimen/margin_padding_size_medium" />
+
+        <TextView
+            android:id="@+id/errorTextView"
+            style="@style/ErrorMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/margin_padding_size_large"
+            tools:text="@string/placeholder_news_list_error" />
+
+    </ViewFlipper>
+
+    <hu.laszloba.fortnightly.ui.toolbar.ToolbarBackgroundImage
+        android:id="@+id/toolbarBackgroundImage"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/common_toolbar_height"
+        android:elevation="@dimen/common_toolbar_background_elevation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/menuButton"
+        android:layout_width="@dimen/common_toolbar_image_width"
+        android:layout_height="@dimen/common_toolbar_image_height"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:contentDescription="@string/content_description_menu_button"
+        android:elevation="@dimen/common_toolbar_content_elevation"
+        android:focusable="true"
+        android:padding="@dimen/common_toolbar_image_padding"
+        android:src="@drawable/ic_menu"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarBackgroundImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/errorTextView"
-        style="@style/ErrorMessage"
+        android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:padding="@dimen/margin_padding_size_large"
-        tools:text="Failed to load news list" />
+        android:elevation="@dimen/common_toolbar_content_elevation"
+        android:text="@string/news_list_title"
+        android:textAppearance="@style/Toolbar.Title"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarBackgroundImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</ViewFlipper>
+    <TextView
+        android:id="@+id/singleLetterLogoTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0"
+        android:elevation="@dimen/common_toolbar_content_elevation"
+        android:paddingLeft="10dp"
+        android:paddingRight="30dp"
+        android:text="@string/news_list_single_letter_logo"
+        android:textAppearance="@style/Toolbar.SingleLetterLogo"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarBackgroundImage"
+        app:layout_constraintStart_toEndOf="@+id/menuButton"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlHardcoded" />
+
+</androidx.constraintlayout.motion.widget.MotionLayout>

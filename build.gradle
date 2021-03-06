@@ -3,7 +3,7 @@ buildscript {
         // Sdk and tools
         buildToolsVersion = '30.0.3'
         compileSdkVersion = 30
-        minSdkVersion = 16
+        minSdkVersion = 21
         targetSdkVersion = 30
 
         // App version

@@ -1,79 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/viewFlipper"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:inAnimation="@android:anim/fade_in"
-    android:outAnimation="@android:anim/fade_out">
+    android:layout_height="match_parent">
 
-    <ProgressBar
-        android:id="@+id/loadingProgressBar"
-        android:layout_width="@dimen/loading_progress_bar_size"
-        android:layout_height="@dimen/loading_progress_bar_size"
-        android:layout_gravity="center" />
+    <hu.laszloba.fortnightly.ui.toolbar.ToolbarWithBackButton
+        android:id="@+id/toolbarWithBackButton"
+        android:layout_width="@dimen/toolbar_back_width"
+        android:layout_height="@dimen/common_toolbar_height" />
 
-    <ScrollView
-        android:id="@+id/contentLayout"
+    <ViewFlipper
+        android:id="@+id/viewFlipper"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:inAnimation="@android:anim/fade_in"
+        android:outAnimation="@android:anim/fade_out">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ProgressBar
+            android:id="@+id/loadingProgressBar"
+            android:layout_width="@dimen/loading_progress_bar_size"
+            android:layout_height="@dimen/loading_progress_bar_size"
+            android:layout_gravity="center" />
+
+        <ScrollView
+            android:id="@+id/contentLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/imageImageView"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:adjustViewBounds="true"
-                android:background="@color/silver_chalice"
-                android:contentDescription="@string/content_description_article_image"
-                android:scaleType="centerCrop"
-                app:layout_constraintDimensionRatio="1.8"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@tools:sample/backgrounds/scenic" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/titleTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_padding_size_small"
-                android:paddingLeft="@dimen/margin_padding_size_medium"
-                android:paddingRight="@dimen/margin_padding_size_medium"
-                android:textAppearance="@style/Subtitle2"
-                app:layout_constraintEnd_toEndOf="@+id/imageImageView"
-                app:layout_constraintStart_toStartOf="@+id/imageImageView"
-                app:layout_constraintTop_toBottomOf="@+id/imageImageView"
-                tools:text="Apple's new augmented reality exec shows how important the tech is" />
+                <ImageView
+                    android:id="@+id/imageImageView"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:adjustViewBounds="true"
+                    android:background="@color/silver_chalice"
+                    android:contentDescription="@string/content_description_article_image"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintDimensionRatio="1.8"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@tools:sample/backgrounds/scenic" />
 
-            <TextView
-                android:id="@+id/descriptionTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_padding_size_medium"
-                android:paddingLeft="@dimen/margin_padding_size_medium"
-                android:paddingRight="@dimen/margin_padding_size_medium"
-                android:textAppearance="@style/Body2"
-                app:layout_constraintEnd_toEndOf="@+id/titleTextView"
-                app:layout_constraintStart_toStartOf="@+id/titleTextView"
-                app:layout_constraintTop_toBottomOf="@+id/titleTextView"
-                tools:text="Bloomberg points out that an executive formerly in charge of iPhone marketing for carriers, Frank Casanova, has a new title: Senior Director, Worldwide Product Marketing at Apple Augmented Reality. While Google is dipping its toe into using AR to enhance Go...[+1061 chars]" />
+                <TextView
+                    android:id="@+id/titleTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_padding_size_small"
+                    android:paddingLeft="@dimen/margin_padding_size_medium"
+                    android:paddingRight="@dimen/margin_padding_size_medium"
+                    android:textAppearance="@style/Subtitle2"
+                    app:layout_constraintEnd_toEndOf="@+id/imageImageView"
+                    app:layout_constraintStart_toStartOf="@+id/imageImageView"
+                    app:layout_constraintTop_toBottomOf="@+id/imageImageView"
+                    tools:text="@string/placeholder_article_title" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/descriptionTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_padding_size_medium"
+                    android:paddingLeft="@dimen/margin_padding_size_medium"
+                    android:paddingRight="@dimen/margin_padding_size_medium"
+                    android:textAppearance="@style/Body2"
+                    app:layout_constraintEnd_toEndOf="@+id/titleTextView"
+                    app:layout_constraintStart_toStartOf="@+id/titleTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/titleTextView"
+                    tools:text="@string/placeholder_article_description" />
 
-    </ScrollView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/errorTextView"
-        style="@style/ErrorMessage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:padding="@dimen/margin_padding_size_large"
-        android:text="@string/article_error" />
+        </ScrollView>
 
-</ViewFlipper>
+        <TextView
+            android:id="@+id/errorTextView"
+            style="@style/ErrorMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/margin_padding_size_large"
+            android:text="@string/article_error" />
+
+    </ViewFlipper>
+
+</FrameLayout>

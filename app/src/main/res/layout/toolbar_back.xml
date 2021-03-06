@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:layout_height="@dimen/common_toolbar_height"
+    tools:layout_width="@dimen/toolbar_back_width"
+    tools:parentTag="android.widget.FrameLayout">
+
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="@dimen/common_toolbar_image_width"
+        android:layout_height="@dimen/common_toolbar_image_height"
+        android:layout_gravity="center_vertical"
+        android:contentDescription="@string/content_description_toolbar_back_button"
+        android:padding="@dimen/common_toolbar_image_padding"
+        android:src="@drawable/ic_arrow_back" />
+
+</merge>
