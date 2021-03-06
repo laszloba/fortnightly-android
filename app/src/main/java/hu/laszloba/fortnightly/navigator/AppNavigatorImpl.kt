@@ -20,4 +20,8 @@ class AppNavigatorImpl @Inject constructor(
                 .actionNewsListFragmentToArticleFragment(articleId)
         )
     }
+
+    override fun popBackStack() {
+        navController.popBackStack()
+    }
 }
