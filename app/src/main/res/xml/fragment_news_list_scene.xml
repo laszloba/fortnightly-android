@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="1000">
+
+        <KeyFrameSet>
+
+            <KeyAttribute
+                android:alpha="1"
+                motion:framePosition="0"
+                motion:motionTarget="@+id/titleTextView" />
+
+            <KeyAttribute
+                android:alpha="0"
+                motion:framePosition="80"
+                motion:motionTarget="@+id/titleTextView" />
+
+            <KeyAttribute
+                android:alpha="0"
+                motion:framePosition="100"
+                motion:motionTarget="@+id/titleTextView" />
+
+            <KeyAttribute
+                android:alpha="0"
+                motion:framePosition="0"
+                motion:motionTarget="@+id/singleLetterLogoTextView" />
+
+            <KeyAttribute
+                android:alpha="0"
+                motion:framePosition="30"
+                motion:motionTarget="@+id/singleLetterLogoTextView" />
+
+            <KeyAttribute
+                android:alpha="1"
+                motion:framePosition="100"
+                motion:motionTarget="@+id/singleLetterLogoTextView" />
+
+        </KeyFrameSet>
+
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start" />
+
+    <ConstraintSet android:id="@+id/end">
+
+        <Constraint
+            android:id="@+id/titleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintStart_toEndOf="@+id/menuButton" />
+
+        <Constraint
+            android:id="@+id/toolbarBackgroundImage"
+            android:layout_height="@dimen/common_toolbar_height"
+            motion:layout_constraintEnd_toEndOf="@+id/singleLetterLogoTextView"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent" />
+
+    </ConstraintSet>
+
+</MotionScene>

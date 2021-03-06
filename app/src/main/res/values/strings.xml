@@ -2,8 +2,11 @@
     <string name="app_name">Fortnightly</string>
 
     <string name="content_description_article_image">Image of the article</string>
+    <string name="content_description_menu_button">Menu button</string>
     <string name="content_description_toolbar_back_button">Navigate back button</string>
 
+    <string name="news_list_title">Front page</string>
+    <string name="news_list_single_letter_logo" translatable="false">N</string>
     <string name="news_list_item_hours_ago">%dH</string>
     <string name="news_list_error">Could not load news list: %s</string>
 

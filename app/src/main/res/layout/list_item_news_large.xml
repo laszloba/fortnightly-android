@@ -12,6 +12,7 @@
         android:id="@+id/imageImageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="@dimen/margin_padding_size_xxxlarge"
         android:adjustViewBounds="true"
         android:background="@color/silver_chalice"
         android:contentDescription="@string/content_description_article_image"
