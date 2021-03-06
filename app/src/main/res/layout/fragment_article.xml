@@ -57,7 +57,7 @@
                     app:layout_constraintEnd_toEndOf="@+id/imageImageView"
                     app:layout_constraintStart_toStartOf="@+id/imageImageView"
                     app:layout_constraintTop_toBottomOf="@+id/imageImageView"
-                    tools:text="Apple's new augmented reality exec shows how important the tech is" />
+                    tools:text="@string/placeholder_article_title" />
 
                 <TextView
                     android:id="@+id/descriptionTextView"
@@ -70,7 +70,7 @@
                     app:layout_constraintEnd_toEndOf="@+id/titleTextView"
                     app:layout_constraintStart_toStartOf="@+id/titleTextView"
                     app:layout_constraintTop_toBottomOf="@+id/titleTextView"
-                    tools:text="Bloomberg points out that an executive formerly in charge of iPhone marketing for carriers, Frank Casanova, has a new title: Senior Director, Worldwide Product Marketing at Apple Augmented Reality. While Google is dipping its toe into using AR to enhance Go...[+1061 chars]" />
+                    tools:text="@string/placeholder_article_description" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

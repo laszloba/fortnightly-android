@@ -32,7 +32,7 @@
         app:layout_constraintEnd_toEndOf="@+id/imageImageView"
         app:layout_constraintStart_toStartOf="@+id/imageImageView"
         app:layout_constraintTop_toBottomOf="@+id/imageImageView"
-        tools:text="1H" />
+        tools:text="@string/placeholder_list_item_news_large_hours_ago" />
 
     <TextView
         android:id="@+id/titleTextView"
@@ -44,6 +44,6 @@
         app:layout_constraintEnd_toEndOf="@+id/imageImageView"
         app:layout_constraintStart_toStartOf="@+id/imageImageView"
         app:layout_constraintTop_toBottomOf="@+id/hoursAgoTextView"
-        tools:text="Mars One dreams plummet back to Earth as company goes bankrupt" />
+        tools:text="@string/placeholder_list_item_news_large_title" />
 
 </merge>

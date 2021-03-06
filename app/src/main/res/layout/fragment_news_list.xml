@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="@dimen/margin_padding_size_large"
-            tools:text="Failed to load news list" />
+            tools:text="@string/placeholder_news_list_error" />
 
     </ViewFlipper>
 
